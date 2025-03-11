@@ -9,11 +9,7 @@ def fetch_data():
     try:
         conn = get_connection()
         cur = conn.cursor()
-        tables = []
-        cur.execute('SELECT * FROM "Comment"')
-        rows = cur.fetchall()
-        for row in rows:
-            print(row)
+        
         cur.close()
     except Exception as e:
         print(f'Got an error: {e}')
