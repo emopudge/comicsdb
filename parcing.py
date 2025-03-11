@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 '
                          '(KHTML, like Gocko) Chrome/118.0 Safari/537.36'}
@@ -40,4 +41,6 @@ def get_info():
     else:
         return 'error:('
 
-print(get_info())
+info = get_info()
+
+
