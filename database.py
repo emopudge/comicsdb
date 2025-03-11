@@ -44,5 +44,5 @@ cursor.execute('INSERT INTO public."Content-maker" ("Content-maker ID", "Nicknam
 comics_id =
 comics_descr =
 release_date =
-
-#conn.commit()"""
+"""
+conn.commit()
