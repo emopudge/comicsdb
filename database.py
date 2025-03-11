@@ -9,7 +9,7 @@ def fetch_data():
     try:
         conn = get_connection()
         cur = conn.cursor()
-        
+
         cur.close()
     except Exception as e:
         print(f'Got an error: {e}')
