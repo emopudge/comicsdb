@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1db2dba9-eaf7-4511-97af-1d8e4434e15a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/comics data bases.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/comics data bases.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +50,7 @@
     "Python.config.executor": "Run",
     "Python.database.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging master",
+    "git-widget-placeholder": "Rebasing master",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>

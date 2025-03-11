@@ -1,0 +1,170 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.12 (comics data bases)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 62c42e43c8672bd00aea049aa73a6d515a0eb7ee)
++++ b/.idea/misc.xml	(date 1741715814801)
+@@ -1,4 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (comics data bases)" project-jdk-type="Python SDK" />
++  <component name="Black">
++    <option name="sdkName" value="Python 3.12 (comics data bases)" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (DataBase)" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
+Index: parcing.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/parcing.py b/parcing.py
+new file mode 100644
+--- /dev/null	(date 1741715747829)
++++ b/parcing.py	(date 1741715747829)
+@@ -0,0 +1,43 @@
++import requests
++from bs4 import BeautifulSoup
++
++headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 '
++                         '(KHTML, like Gocko) Chrome/118.0 Safari/537.36'}
++
++def get_info():
++    """
++    returns name, release date and description of the comics
++    """
++    url = 'https://spidermedia.ru/mustread'
++    response = requests.get(url, headers=headers)
++    if response.status_code == 200:
++        names = []
++        dates = []
++        desc = []
++        soup = BeautifulSoup(response.text, 'html.parser')
++
++        for name in soup.find_all('div', class_='moment-title'):
++            tag = name.get_text(strip=True).replace('✓', '').strip()
++            names.append(tag)
++
++        for date_sentence in soup.find_all('div', class_ = 'moment-info'):
++            tag = date_sentence.get_text(strip=True).strip()
++            date = ''
++            for i in tag:
++                if i in '1234567890–-.':
++                    date += i
++            dates.append(date)
++
++        for description_sentence in soup.find_all('div', class_ = 'moment-content'):
++            p_tag = description_sentence.find('p')
++            if p_tag:
++                desc.append(p_tag.get_text(strip=True))
++            else:
++                desc.append('no description')
++
++        return names, dates, desc
++
++    else:
++        return 'error:('
++
++print(get_info())
+Index: .idea/comics data bases.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/.venv\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/comics data bases.iml b/.idea/comics data bases.iml
+--- a/.idea/comics data bases.iml	(revision 62c42e43c8672bd00aea049aa73a6d515a0eb7ee)
++++ b/.idea/comics data bases.iml	(date 1741715814792)
+@@ -3,6 +3,7 @@
+   <component name="NewModuleRootManager">
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/.venv" />
++      <excludeFolder url="file://$MODULE_DIR$/venv_db" />
+     </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"1db2dba9-eaf7-4511-97af-1d8e4434e15a\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"associatedIndex\": 3\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"2u4m9vglWQPPbDovV6MR1hIdi6l\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-98f27166c754-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.21829.153\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"1db2dba9-eaf7-4511-97af-1d8e4434e15a\" name=\"Changes\" comment=\"\" />\r\n      <created>1741516073341</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1741516073341</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 62c42e43c8672bd00aea049aa73a6d515a0eb7ee)
++++ b/.idea/workspace.xml	(date 1741715814792)
+@@ -1,26 +1,60 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="1db2dba9-eaf7-4511-97af-1d8e4434e15a" name="Changes" comment="" />
++    <list default="true" id="1db2dba9-eaf7-4511-97af-1d8e4434e15a" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/parcing.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 3
+-}]]></component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Python Script" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
++  </component>
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;emopudge&quot;
++  }
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/emopudge/comicsdb.git&quot;,
++    &quot;accountId&quot;: &quot;3f9f9302-1492-4944-8ed8-f2c8e1a86c63&quot;
++  }
++}</component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 3
++}</component>
+   <component name="ProjectId" id="2u4m9vglWQPPbDovV6MR1hIdi6l" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.ShowReadmeOnStart": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Python.config.executor&quot;: &quot;Run&quot;,
++    &quot;Python.database.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;Merging master&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
